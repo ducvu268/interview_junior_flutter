@@ -49,7 +49,7 @@ lib/
 ## 🚀 Cài đặt & Chạy ứng dụng
 ### 1️⃣ Clone repository
 ```bash
-git clone https://github.com/your-username/todo-app-flutter.git
+git clone https://github.com/ducvu268/interview_junior_flutter.git
 cd interview_junior_flutter
 ```
 
