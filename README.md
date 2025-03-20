@@ -1,4 +1,4 @@
-# Todo App (Flutter - Junior++)
+# Task Manager App (Flutter - Junior++)
 
 ## 📌 Giới thiệu
 Theo yêu cầu bài test từ ITBee Solutions, thì đây là ứng dụng **Quản lý Công Việc (Task Manager App)** được phát triển bằng Flutter, sử dụng BloC để quản lý state. Ứng dụng giúp người dùng tạo danh sách công việc cá nhân, theo dõi trạng thái hoàn thành và lưu trữ dữ liệu bằng SQLite. Ứng dụng chạy trên cả **iOS & Android**.
