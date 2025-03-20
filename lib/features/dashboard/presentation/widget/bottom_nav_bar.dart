@@ -2,9 +2,6 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:goilele/common/extensions/text_style_ext.dart';
-import 'package:goilele/common/themes/app_color.dart';
-import 'package:goilele/common/themes/bloc/theme_bloc.dart';
 import 'package:interview_junior_flutter/core/extensions/text_style_ext.dart';
 import 'package:interview_junior_flutter/core/themes/app_color.dart';
 import 'package:interview_junior_flutter/core/themes/bloc/theme_bloc.dart';
