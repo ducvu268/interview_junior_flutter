@@ -8,6 +8,7 @@ import 'package:interview_junior_flutter/core/widgets/loading_screen_global.dart
 import 'package:interview_junior_flutter/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:interview_junior_flutter/features/dashboard/presentation/widget/bottom_nav_bar.dart';
 import 'package:interview_junior_flutter/features/dashboard/presentation/widget/floating_action_btn.dart';
+import 'package:interview_junior_flutter/features/home/presentation/pages/home_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   final int? pageIndex;

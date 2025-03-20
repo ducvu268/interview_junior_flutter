@@ -27,6 +27,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     try {
       final userInfoModel = UserInfoModel(
         id: '001',
+        name: 'Nguyen Huu Duc Vu',
+        userName: 'nguyenducvu',
         email: 'ducvuglotec@gmail.com',
         phoneNumber: '0332940384',
       );

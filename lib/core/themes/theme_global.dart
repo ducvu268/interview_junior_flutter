@@ -5,19 +5,20 @@ class ThemeGlobal {
   static final ThemeData darkTheme = ThemeData(
     colorScheme: ColorScheme.dark(
       brightness: Brightness.dark,
-      primary: AppColors.primary,
+      primary: AppColors.darkPrimary,
       onPrimary: Colors.white,
       surface: Colors.white,
-      onSurface: AppColors.primary,
+      onSurface: AppColors.darkPrimary,
     ),
   );
 
   static final ThemeData lightTheme = ThemeData(
-      brightness: Brightness.light,
-      colorScheme:  ColorScheme.light(
-        primary: Colors.white,
-        onPrimary: AppColors.primary,
-        surface: AppColors.primary,
-        onSurface: Colors.white,
-      ));
+    brightness: Brightness.light,
+    colorScheme: ColorScheme.light(
+      primary: Colors.white,
+      onPrimary: AppColors.darkPrimary,
+      surface: AppColors.darkPrimary,
+      onSurface: Colors.white,
+    ),
+  );
 }
