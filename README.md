@@ -66,7 +66,7 @@ flutter run
 
 ## 📈 Mở rộng (Điểm cộng)
 - 🔹 **Tìm kiếm công việc** 🔍
-- 🔹 **Thông báo nhắc nhở công việc đến hạn** 🔔 (Local Notification)
+<!-- - 🔹 **Thông báo nhắc nhở công việc đến hạn** 🔔 (Local Notification) -->
 - 🔹 **Giao diện hỗ trợ Dark Mode** 🌙
 - 🔹 **Sử dụng BloC để quản lý state** ⚡
 
