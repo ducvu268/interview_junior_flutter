@@ -18,6 +18,10 @@ import '../../features/dashboard/domain/repositories/dashboard_repository_impl.d
     as _i714;
 import '../../features/dashboard/presentation/bloc/dashboard_bloc.dart'
     as _i652;
+import '../../features/home/domain/repositories/home_repository.dart' as _i0;
+import '../../features/home/domain/repositories/home_repository_impl.dart'
+    as _i477;
+import '../../features/home/presentation/bloc/home_bloc.dart' as _i202;
 import '../services/local_storage_service.dart' as _i527;
 import '../themes/bloc/theme_bloc.dart' as _i339;
 
@@ -35,10 +39,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i665.DashboardRepository>(
       () => _i714.DashboardRepositoryImpl(),
     );
+    gh.factory<_i0.HomeRepository>(() => _i477.HomeRepositoryImpl());
     gh.factory<_i652.DashboardBloc>(
       () => _i652.DashboardBloc(
         dashboardRepository: gh<_i665.DashboardRepository>(),
       ),
+    );
+    gh.factory<_i202.HomeBloc>(
+      () => _i202.HomeBloc(homeRepository: gh<_i0.HomeRepository>()),
     );
     return this;
   }

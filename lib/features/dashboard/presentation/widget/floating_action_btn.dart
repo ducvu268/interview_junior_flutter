@@ -13,8 +13,8 @@ class FloatingActionBtn extends StatelessWidget {
         // color: const Color(0xFFCF0000),
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 255, 43, 10),
-            Color.fromARGB(255, 255, 74, 24),
+            Color.fromARGB(255, 177, 24, 1),
+            Color.fromARGB(255, 190, 45, 5),
           ],
           stops: [0, 1],
           begin: AlignmentDirectional(1, -1),

@@ -34,7 +34,11 @@ class _SplashScreenState extends State<SplashScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/img_logo_company.jfif', scale: 7),
+                Image.asset(
+                  'assets/images/img_logo_company.jfif',
+                  width: 120,
+                  height: 120,
+                ),
                 const SizedBox(height: 10),
               ],
             ),

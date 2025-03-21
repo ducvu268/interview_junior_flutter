@@ -21,7 +21,7 @@ class TestFlutterInterviewApp extends StatelessWidget {
         builder: (__, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'GoiLeLe',
+            title: 'Test Flutter Junior',
             themeMode: ThemeMode.system,
             theme: (state.isDarkMode)
                 ? ThemeGlobal.darkTheme
