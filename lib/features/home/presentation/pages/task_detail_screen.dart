@@ -60,7 +60,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
       child: MScaffold(
         appBar: AppbarGlobal(
           title: Text(
-            'Add Task',
+            widget.request != null ? 'Edit Task' : 'Add Task',
             style: context.textStyle24.copyWith(
               fontWeight: FontWeight.w500,
               color: Theme.of(context).colorScheme.onSurface,
