@@ -27,7 +27,7 @@ class UserProfileHeader extends StatelessWidget {
                 decoration: BoxDecoration(shape: BoxShape.circle),
                 child: CachedNetworkImage(
                   imageUrl:
-                      "https://ui-avatars.com/api/?name=${model.email}&background=random",
+                      "https://ui-avatars.com/api/?name=${model.name ?? 'Duc Vu'}&background=random",
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),

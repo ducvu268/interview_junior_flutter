@@ -15,8 +15,10 @@ class ConfirmDeleteDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 36)
-          .copyWith(top: 24),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12,
+        vertical: 36,
+      ).copyWith(top: 24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -26,6 +28,7 @@ class ConfirmDeleteDialog extends StatelessWidget {
             style: context.textStyle18.copyWith(
               fontWeight: FontWeight.w500,
               decoration: TextDecoration.none,
+              color: AppColors.contentColorBlack,
             ),
             textAlign: TextAlign.center,
           ),
@@ -41,10 +44,12 @@ class ConfirmDeleteDialog extends StatelessWidget {
                   backgroundColor: Colors.grey.shade100,
                   shadowColor: Colors.transparent,
                   surfaceTintColor: Colors.transparent,
-                  fixedSize:
-                      Size.fromWidth(MediaQuery.of(context).size.width * 0.45),
+                  fixedSize: Size.fromWidth(
+                    MediaQuery.of(context).size.width * 0.45,
+                  ),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 child: Center(
                   child: Text(
@@ -60,20 +65,24 @@ class ConfirmDeleteDialog extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   padding: EdgeInsets.symmetric(vertical: 12),
-                  backgroundColor: isLoading
-                      ? const Color(0xFFFF5C5C).withOpacity(.3)
-                      : const Color(0xFFFF5C5C),
+                  backgroundColor:
+                      isLoading
+                          ? const Color(0xFFFF5C5C).withOpacity(.3)
+                          : const Color(0xFFFF5C5C),
                   surfaceTintColor: Colors.transparent,
-                  fixedSize:
-                  Size.fromWidth(MediaQuery.of(context).size.width * 0.45),
+                  fixedSize: Size.fromWidth(
+                    MediaQuery.of(context).size.width * 0.45,
+                  ),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
                 child: Text(
                   'Delete',
                   style: context.textStyle14.copyWith(
-                      color: AppColors.contentColorWhite,
-                      fontWeight: FontWeight.w700),
+                    color: AppColors.contentColorWhite,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ],
