@@ -64,6 +64,9 @@ cd interview_junior_flutter
 flutter run
 ```
 
+## 🚀 Test nhanh với file build APK
+Link: **https://drive.google.com/drive/folders/1SXAgWK4OI8DiF0W3638_pXxd7G5m9CpK?usp=sharing**
+
 ## 📈 Mở rộng (Điểm cộng)
 - 🔹 **Tìm kiếm công việc** 🔍
 <!-- - 🔹 **Thông báo nhắc nhở công việc đến hạn** 🔔 (Local Notification) -->
