@@ -12,7 +12,11 @@ class HomeRepositoryImpl extends HomeRepository {
     final db = await _dbService.database;
     try {
       int insertId = await db.insert('tasks', task.toJson());
-      return insertId > 0;
+      if (insertId > 0) {
+        task = task.copyWith(id: insertId);
+        return true;
+      }
+      return false;
     } catch (e) {
       rethrow;
     }
@@ -23,10 +27,12 @@ class HomeRepositoryImpl extends HomeRepository {
     final db = await _dbService.database;
     String whereClause = onlyTaskInProgress ? "WHERE status = 0" : "";
     try {
-      final result = await db.rawQuery(
-        "SELECT * FROM tasks $whereClause ORDER BY created_at DESC",
-      );
-      return result.map((json) => TaskModel.fromJson(json)).toList();
+      final result = await db.rawQuery("SELECT * FROM tasks $whereClause");
+      return result
+          .map((json) => TaskModel.fromJson(json))
+          .toList()
+          .reversed
+          .toList();
     } catch (e) {
       rethrow;
     }
@@ -61,6 +67,22 @@ class HomeRepositoryImpl extends HomeRepository {
         whereArgs: [id],
       );
       return deletedRows > 0;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> updateTaskStatus(int taskId, int newStatus) async {
+    try {
+      final db = await _dbService.database;
+      int count = await db.update(
+        'tasks',
+        {'status': newStatus, 'updated_at': DateTime.now().toIso8601String()},
+        where: 'id = ?',
+        whereArgs: [taskId],
+      );
+      return count > 0;
     } catch (e) {
       rethrow;
     }

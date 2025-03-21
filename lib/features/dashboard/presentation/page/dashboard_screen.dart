@@ -8,6 +8,7 @@ import 'package:interview_junior_flutter/core/widgets/loading_screen_global.dart
 import 'package:interview_junior_flutter/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:interview_junior_flutter/features/dashboard/presentation/widget/bottom_nav_bar.dart';
 import 'package:interview_junior_flutter/features/dashboard/presentation/widget/floating_action_btn.dart';
+import 'package:interview_junior_flutter/features/home/presentation/bloc/home_bloc.dart';
 import 'package:interview_junior_flutter/features/home/presentation/pages/home_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -42,6 +43,7 @@ class _DashboardScreenState extends State<DashboardScreen>
       canPop: false,
       child: Scaffold(
         extendBody: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.primary,
         body: BlocBuilder<DashboardBloc, DashboardState>(
           builder: (__, state) {
@@ -55,11 +57,12 @@ class _DashboardScreenState extends State<DashboardScreen>
               );
             } else if (state is DashboardError) {
               return Center(
-                  child: Text(
-                state.message,
-                style: context.textStyle16,
-                textAlign: TextAlign.center,
-              ));
+                child: Text(
+                  state.message,
+                  style: context.textStyle16,
+                  textAlign: TextAlign.center,
+                ),
+              );
             } else {
               return const LoadingScreenGlobal();
             }
@@ -69,8 +72,13 @@ class _DashboardScreenState extends State<DashboardScreen>
           builder: (__, state) {
             if (state is DashboardLoadSuccess) {
               return FloatingActionButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.taskDetail);
+                onPressed: () async {
+                  final isRefresh = await Navigator.of(
+                    context,
+                  ).pushNamed(AppRoutes.taskDetail);
+                  if (isRefresh != null && isRefresh is bool) {
+                    context.read<HomeBloc>().add(HomeInitialEvent());
+                  }
                 },
                 backgroundColor: Colors.transparent,
                 child: const FloatingActionBtn(),

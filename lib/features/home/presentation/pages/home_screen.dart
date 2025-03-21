@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:interview_junior_flutter/core/configs/app_router.dart';
 import 'package:interview_junior_flutter/core/extensions/text_style_ext.dart';
 import 'package:interview_junior_flutter/core/themes/app_color.dart';
 import 'package:interview_junior_flutter/core/utils/snack_bar_util.dart';
@@ -9,7 +9,6 @@ import 'package:interview_junior_flutter/core/widgets/loading_screen_global.dart
 import 'package:interview_junior_flutter/core/widgets/m_scaffold.dart';
 import 'package:interview_junior_flutter/features/dashboard/domain/models/user_info_model.dart';
 import 'package:interview_junior_flutter/features/home/const/tasksStatus.dart';
-import 'package:interview_junior_flutter/features/home/domain/models/task_model.dart';
 import 'package:interview_junior_flutter/features/home/presentation/bloc/home_bloc.dart';
 import 'package:interview_junior_flutter/features/home/presentation/widgets/confirm_delete_dialog.dart';
 import 'package:interview_junior_flutter/features/home/presentation/widgets/tab_filter_task_item.dart';
@@ -93,37 +92,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: 12,
                     keyboardType: TextInputType.text,
                     fillColor: Colors.white,
-                    prefixIcon: SizedBox(
-                      width: 4,
-                      height: 4,
-                      child: SvgPicture.asset(
-                        'assets/icons/ic_search.svg',
-                        width: 4,
-                        height: 4,
-                      ),
+                    prefixIcon: Image.asset(
+                      'assets/icons/ic_search.png',
+                      width: 24,
+                      height: 24,
                     ),
                   ),
 
                   /// TASKS LIST
                   state.tasksByFilter.isEmpty
-                      ? Center(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.width / 4,
-                            ),
-                            Image.asset(
-                              'assets/images/img_none_result.png',
-                              width: 200,
-                              height: 200,
-                            ),
-                            Text(
-                              'List tasks is empty',
-                              style: context.textStyle14.copyWith(
-                                color: Colors.grey,
+                      ? Expanded(
+                        child: SingleChildScrollView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.width / 4,
                               ),
-                            ),
-                          ],
+                              Image.asset(
+                                'assets/images/img_none_result.png',
+                                width: 200,
+                                height: 200,
+                              ),
+                              Text(
+                                'List tasks is empty',
+                                style: context.textStyle14.copyWith(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       )
                       : Expanded(
@@ -140,9 +138,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                 itemBuilder: (__, index) {
                                   return TaskItem(
                                     model: state.tasksByFilter[index],
+                                    onTap: () async {
+                                      final isRefresh = await Navigator.of(
+                                        context,
+                                      ).pushNamed(
+                                        AppRoutes.taskDetail,
+                                        arguments: state.tasksByFilter[index],
+                                      );
+                                      if (isRefresh != null &&
+                                          isRefresh is bool) {
+                                        context.read<HomeBloc>().add(
+                                          HomeInitialEvent(),
+                                        );
+                                      }
+                                    },
                                     onChangeStatus: (status) {
                                       context.read<HomeBloc>().add(
-                                        ToggleStatusEvent(status ?? false),
+                                        ToggleStatusEvent(
+                                          state.tasksByFilter[index],
+                                        ),
                                       );
                                     },
                                     onDelete: () {
@@ -219,8 +233,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 .add(
                                                                   DeleteTaskEvent(
                                                                     state
-                                                                        .tasksByFilter[index]
-                                                                        .id,
+                                                                            .tasksByFilter[index]
+                                                                            .id ??
+                                                                        -1,
                                                                   ),
                                                                 ),
                                                       );

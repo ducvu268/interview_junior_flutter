@@ -5,7 +5,7 @@ part 'task_model.g.dart';
 
 @JsonSerializable()
 class TaskModel {
-  final int id;
+  final int? id;
   final String title;
   final String description;
   final int status;
@@ -14,7 +14,7 @@ class TaskModel {
   final String? updated_at;
 
   TaskModel({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
     required this.status,
@@ -50,7 +50,6 @@ class TaskModel {
 
   factory TaskModel.empty() {
     return TaskModel(
-      id: -1,
       title: '',
       description: '',
       status: 0,
@@ -75,6 +74,26 @@ class TaskModel {
       return DateFormat('yyyy-MM-dd').format(parsedDate);
     } catch (e) {
       throw FormatException('Invalid date format: $input');
+    }
+  }
+
+  static String convertToDisplayFormat(String input) {
+    try {
+      DateTime parsedDate;
+
+      if (RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(input)) {
+        parsedDate = DateFormat('yyyy-MM-dd').parseStrict(input);
+      } else if (RegExp(r'^\d{2}/\d{2}/\d{4}$').hasMatch(input)) {
+        parsedDate = DateFormat('dd/MM/yyyy').parseStrict(input);
+      } else {
+        throw FormatException('Invalid date format: $input');
+      }
+      if (parsedDate.year < 1900) {
+        return "01/01/2000";
+      }
+      return DateFormat('dd/MM/yyyy').format(parsedDate);
+    } catch (e) {
+      return "01/01/2000";
     }
   }
 

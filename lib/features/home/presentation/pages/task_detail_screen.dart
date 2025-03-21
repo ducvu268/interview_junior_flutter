@@ -8,6 +8,7 @@ import 'package:interview_junior_flutter/core/widgets/btn_gradient_global.dart';
 import 'package:interview_junior_flutter/core/widgets/input_field_global.dart';
 import 'package:interview_junior_flutter/core/widgets/loading_screen_global.dart';
 import 'package:interview_junior_flutter/core/widgets/m_scaffold.dart';
+import 'package:interview_junior_flutter/features/home/domain/models/task_model.dart';
 import 'package:interview_junior_flutter/features/home/presentation/bloc/home_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -33,6 +34,13 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       context.read<HomeBloc>().add(TaskDetailInitialEvent(widget.request));
+      if (widget.request != null && widget.request is TaskModel) {
+        titleController.text = widget.request.title;
+        descriptionController.text = widget.request.description;
+        dueDateController.text = TaskModel.convertToDisplayFormat(
+          widget.request.due_date,
+        );
+      }
     });
   }
 
@@ -55,7 +63,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
             'Add Task',
             style: context.textStyle24.copyWith(
               fontWeight: FontWeight.w500,
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
           centerTitle: true,
@@ -230,7 +238,11 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                       listener: (__, state) {
                         if (state is TaskDetailLoadSuccess) {
                           if (state.isHandleSuccess) {
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pop(true);
+                            SnackBarUtil.showSuccess(
+                              context,
+                              "${widget.request != null ? 'Update' : 'Create'} task successfully!",
+                            );
                           } else {
                             SnackBarUtil.showError(
                               context,
@@ -244,9 +256,15 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
                             FocusScope.of(context).unfocus();
-                            context.read<HomeBloc>().add(
-                              const CreateTaskEvent(),
-                            );
+                            if (widget.request != null) {
+                              context.read<HomeBloc>().add(
+                                UpdateTaskEvent(widget.request.id),
+                              );
+                            } else {
+                              context.read<HomeBloc>().add(
+                                const CreateTaskEvent(),
+                              );
+                            }
                           }
                         },
                         width: MediaQuery.of(context).size.width / 2,
@@ -254,7 +272,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                         color2: AppColors.primary.withOpacity(.6),
                         child: Center(
                           child: Text(
-                            'Add',
+                            widget.request != null ? 'Update' : 'Add',
                             style: context.textStyle16.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,

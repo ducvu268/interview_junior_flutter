@@ -49,12 +49,12 @@ class SearchTaskEvent extends HomeEvent {
 }
 
 class ToggleStatusEvent extends HomeEvent {
-  final bool status;
+  final TaskModel taskModel;
 
-  const ToggleStatusEvent(this.status);
+  const ToggleStatusEvent(this.taskModel);
 
   @override
-  List<Object?> get props => [...super.props, status];
+  List<Object?> get props => [...super.props, taskModel];
 }
 
 class ChangedInputTaskEvent extends HomeEvent {
@@ -78,6 +78,15 @@ class DeleteTaskEvent extends HomeEvent {
   final int id;
 
   const DeleteTaskEvent(this.id);
+
+  @override
+  List<Object?> get props => [...super.props, id];
+}
+
+class UpdateTaskEvent extends HomeEvent {
+  final int id;
+
+  const UpdateTaskEvent(this.id);
 
   @override
   List<Object?> get props => [...super.props, id];

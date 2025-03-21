@@ -7,5 +7,7 @@ abstract class HomeRepository {
 
   Future<bool> updateTask(TaskModel task);
 
+  Future<bool> updateTaskStatus(int taskId, int newStatus);
+
   Future<bool> deleteTask(int id);
 }
