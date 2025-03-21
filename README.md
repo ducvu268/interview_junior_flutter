@@ -1,4 +1,4 @@
-# Task Manager App (Flutter - Junior++)
+# Task Manager App (Flutter - Junior++) - Interview at ITBee Solutions
 
 ## 📌 Giới thiệu
 Theo yêu cầu bài test từ ITBee Solutions, thì đây là ứng dụng **Quản lý Công Việc (Task Manager App)** được phát triển bằng Flutter, sử dụng BloC để quản lý state. Ứng dụng giúp người dùng tạo danh sách công việc cá nhân, theo dõi trạng thái hoàn thành và lưu trữ dữ liệu bằng SQLite. Ứng dụng chạy trên cả **iOS & Android**.
@@ -16,7 +16,6 @@ Theo yêu cầu bài test từ ITBee Solutions, thì đây là ứng dụng **Qu
 - **Flutter** (Dart)
 - **SQLite**
 - **State Management**: BloC
-<!-- - **Local Notification** (*nếu có*) -->
 
 ## 📂 Cấu trúc thư mục
 ```
@@ -67,9 +66,8 @@ flutter run
 ## 🚀 Test nhanh với file build APK
 Link: **https://drive.google.com/drive/folders/1SXAgWK4OI8DiF0W3638_pXxd7G5m9CpK?usp=sharing**
 
-## 📈 Mở rộng (Điểm cộng)
+## 📈 Mở rộng
 - 🔹 **Tìm kiếm công việc** 🔍
-<!-- - 🔹 **Thông báo nhắc nhở công việc đến hạn** 🔔 (Local Notification) -->
 - 🔹 **Giao diện hỗ trợ Dark Mode** 🌙
 - 🔹 **Sử dụng BloC để quản lý state** ⚡
 
